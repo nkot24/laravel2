@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PostsController;
 
 
 /*
@@ -16,7 +17,15 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/', [PagesController::class, 'index']);
+Route::get('/blog', [PostsController::class, 'index']);
+Route::get('/blog/create', [PostsController::class, 'create']);
+Route::get('/blog/{slug}', [PostsController::class, 'show']);
+Route::post('/blog', [PostsController::class, 'store']);
+Route::get('/blog/{slug}/edit', [PostsController::class, 'edit']);
+Route::delete('/blog/{slug}', [PostsController::class, 'destroy']);
+Route::put('/blog/{slug}', [PostsController::class, 'update']);
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
